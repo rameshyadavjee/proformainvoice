@@ -36,6 +36,7 @@
                                 <th>Total</th>
                                 <th>Date</th>
                                 <td align="middle"><strong>Status</strong></td>
+                                <td align="middle"><strong>By</strong></td>
                                 <td width="14%" align="middle"><strong>Action</strong></td>
                             </tr>
                         </thead>
@@ -54,7 +55,7 @@
                                     @endif
                                 </td>
                                 <td align="middle">{{ $proforma->status }}</td>
-
+                                <td align="middle">{{ $proforma->created_by }}</td>
                                 <td align="right">
                                     <a href="{{ route('proforma.show', $proforma->id) }}" class="btn btn-sm btn-info">View</a>
                                     <a href="{{ route('proforma.edit', $proforma->id) }}" class="btn btn-sm btn-warning">Update</a>
