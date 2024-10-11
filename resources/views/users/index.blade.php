@@ -8,8 +8,13 @@
         </div>
         <div class="card-body">
             <div class="row mb-2">
+                @if (session('status'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('status') }}
+                </div>
+                @endif
                 <div class="col-md-3">
-                    <a href="{{ route('users.create') }}" class="btn btn-success">Add New User</a>
+                    <a href="{{ route('users.create') }}" class="btn btn-primary">Add New User</a>
                 </div>
                 <div class="col-md-5 offset-md-4">
                     <form method="post" name="search" action="{{route('search-user')}}">
@@ -21,14 +26,9 @@
                 </div>
             </div>
 
-            @if (session('status'))
-            <div class="alert alert-success" role="alert">
-                {{ session('status') }}
-            </div>
-            @endif
             <div class="table-responsive">
                 <table class="table table-hover table-bordered">
-                    <thead>
+                    <thead class="table-active table-dark">
                         <tr class="table-primary">
                             <td align="center"><strong>#</strong></td>
                             <th>
@@ -55,8 +55,8 @@
                                     @endif
                                 </a>
                             </th>
-                            
-                            <th>Role</th> 
+
+                            <th>Role</th>
                             <td align="middle"><strong>Status</strong></td>
                             <td width="5%" align="middle"><strong>Reset</strong></td>
                             <td width="5%" align="middle"><strong>Edit</strong></td>
@@ -68,12 +68,12 @@
                             <td align="center">{{ $loop->iteration }}</td>
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
-                             
+
                             <td>{{ $user->roles->first()->display_name ?? "No role assigned "}}</td>
-                             
+
                             <td align="middle">{{ $user->status }}</td>
                             <td align="center"><a href="{{ route('users.edit-password', $user->id) }}">Reset</a></td>
-                            <td align="center"><a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning btn-sm">Edit</a></td>
+                            <td align="center"><a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning btn-sm"><i class="bi bi-pencil-fill"></i></a></td>
                         </tr>
                         @empty
                         <tr>

@@ -11,7 +11,7 @@
                     <form action="{{ route('clients.store') }}" method="POST">
                         @csrf
                         <div class="row">
-                            <div class="form-group col-md-5">
+                            <div class="form-group col-md-6 mb-2">
                                 <label>Business Name</label>
                                 <input type="text" name="business_name" value="{{ old('business_name', $client->business_name ?? '') }}" class="form-control">
                                 @error('business_name')
@@ -19,7 +19,7 @@
                                 @enderror
                             </div>
 
-                            <div class="form-group col-md-5">
+                            <div class="form-group col-md-6 mb-2">
                                 <label>Contact Name</label>
                                 <input type="text" name="contact_name" value="{{ old('contact_name', $client->contact_name ?? '') }}" class="form-control">
                                 @error('contact_name')
@@ -27,15 +27,9 @@
                                 @enderror
                             </div>
 
-                            <div class="form-group col-md-2">
-                                <label>Contact Number</label>
-                                <input type="text" name="contact_number" value="{{ old('contact_number', $client->contact_number ?? '') }}" class="form-control">
-                                @error('contact_number')
-                                <div class="text-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
+                            
 
-                            <div class="form-group col-md-5">
+                            <div class="form-group col-md-6 mb-2">
                                 <label>Address</label>
                                 <textarea name="address" class="form-control">{{ old('address', $client->address ?? '') }}</textarea>
                                 @error('address')
@@ -43,15 +37,21 @@
                                 @enderror
                             </div>
 
-                            <div class="form-group col-md-5">
+                            <div class="form-group col-md-6 mb-2">
                                 <label>Payment Terms</label>
                                 <textarea name="payment_terms" class="form-control">{{ old('payment_terms', $client->payment_terms ?? '') }}</textarea>
                                 @error('payment_terms')
                                 <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
-
-                            <div class="form-group col-md-2">
+                            <div class="form-group col-md-2 mb-2">
+                                <label>Contact Number</label>
+                                <input type="text" name="contact_number" value="{{ old('contact_number', $client->contact_number ?? '') }}" class="form-control">
+                                @error('contact_number')
+                                <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group col-md-2 mb-2">
                                 <label>GST Number</label>
                                 <input type="text" name="gst_number" value="{{ old('gst_number', $client->gst_number ?? '') }}" class="form-control">
                                 @error('gst_number')
@@ -59,7 +59,7 @@
                                 @enderror
                             </div>
 
-                            <div class="form-group col-md-2">
+                            <div class="form-group col-md-2 mb-2">
                                 <label>Client Type</label>
                                 <select name="client_type" class="form-select ">
                                     <option value="Dealer" {{ old('client_type', $client->client_type ?? '') == 'Dealer' ? 'selected' : '' }}>Dealer</option>

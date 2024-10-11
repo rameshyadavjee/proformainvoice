@@ -9,11 +9,11 @@
 
                 <div class="card-body">
                     <div class="row mb-2">
+                        @if(session('success'))
+                        <div class="alert alert-success">{{ session('success') }}</div>
+                        @endif
                         <div class="col-md-3">
                             <a href="{{ route('proforma.create') }}" class="btn btn-primary mb-3">Create New Proforma</a>
-                            @if(session('success'))
-                            <div class="alert alert-success">{{ session('success') }}</div>
-                            @endif
                         </div>
                         <div class="col-md-5 offset-md-4">
                             <form method="post" name="search" action="{{route('search-proforma')}}">
@@ -25,9 +25,8 @@
                         </div>
                     </div>
 
-
                     <table class="table table-hover table-bordered">
-                        <thead class="table-active">
+                        <thead class="table-active table-dark">
                             <tr valign="middle">
                                 <th>#</th>
                                 <th>Buyer</th>
@@ -37,7 +36,7 @@
                                 <th>Date</th>
                                 <td align="middle"><strong>Status</strong></td>
                                 <td align="middle"><strong>By</strong></td>
-                                <td width="14%" align="middle"><strong>Action</strong></td>
+                                <td width="10%" align="middle"><strong>Action</strong></td>
                             </tr>
                         </thead>
                         <tbody>
@@ -56,9 +55,10 @@
                                 </td>
                                 <td align="middle">{{ $proforma->status }}</td>
                                 <td align="middle">{{ $proforma->created_by }}</td>
-                                <td align="right">
-                                    <a href="{{ route('proforma.show', $proforma->id) }}" class="btn btn-sm btn-info">View</a>
-                                    <a href="{{ route('proforma.edit', $proforma->id) }}" class="btn btn-sm btn-warning">Update</a>
+                                <td align="center">
+                                    <a href="{{ route('proforma.show', $proforma->id) }}" class="btn btn-sm btn-info"><i class="bi bi-search"></i></a>
+                                    <a href="{{ route('proforma.edit', $proforma->id) }}" class="btn btn-sm btn-warning"><i class="bi bi-pencil-fill"></i></a>
+
                                 </td>
                             </tr>
                             @endforeach

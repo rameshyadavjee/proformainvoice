@@ -9,13 +9,13 @@
 
                 <div class="card-body">
                     <div class="row mb-2">
+                        @if ($message = Session::get('success'))
+                        <div class="alert alert-success">
+                            {{ $message }}
+                        </div>
+                        @endif
                         <div class="col-md-3">
                             <a href="{{ route('clients.create') }}" class="btn btn-primary mb-3">Add New Client</a>
-                            @if ($message = Session::get('success'))
-                            <div class="alert alert-success">
-                                {{ $message }}
-                            </div>
-                            @endif
                         </div>
                         <div class="col-md-5 offset-md-4">
                             <form method="post" name="search" action="{{route('search-client')}}">
@@ -29,30 +29,34 @@
 
 
                     <table class="table table-hover table-bordered">
-                        <thead class="table-active">
+                        <thead class="table-active table-dark">
                             <tr valign="middle">
                                 <th>ID</th>
                                 <th>Business Name</th>
                                 <th>Contact Name</th>
-                                <th>Contact Phone</th>
-                                <th>GST Number</th>
-                                <th>Client Type</th>
-                                <td width="12%" align="middle"><strong>Action</strong></td>
+                                <td align="center"><strong>Contact Phone</strong></td>
+                                <td align="center"><strong>GST Number</strong></td>
+                                <td align="center"><strong>Client Type</strong></td>
+                                <td width="18%" align="middle"><strong>Action</strong></td>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($clients as $key => $client)
                             <tr valign="middle">
-                                <td align="center">{{ $key + 1}}</td>
+                                <td align="center">{{ $client->id}}</td>
                                 <td>{{ $client->business_name }}</td>
                                 <td>{{ $client->contact_name }}</td>
-                                <td>{{ $client->contact_number }}</td>
-                                <td>{{ $client->gst_number }}</td>
-                                <td>{{ $client->client_type }}</td>
-                                <td align="right">
-                                    <a href="{{ route('clients.show', $client->id) }}" class="btn btn-sm btn-info">Show</a>
-                                    <a href="{{ route('clients.edit', $client->id) }}" class="btn btn-sm btn-warning">Edit</a>
-
+                                <td align="center">{{ $client->contact_number }}</td>
+                                <td align="center">{{ $client->gst_number }}</td>
+                                <td align="center">{{ $client->client_type }}</td>
+                                <td align="center">
+                                <a href="{{ route('clients.show', $client->id) }}" class="btn btn-sm btn-info"><i class="bi bi-search"></i></a>
+                                    <a href="{{ route('clients.edit', $client->id) }}" class="btn btn-sm btn-warning"><i class="bi bi-pencil-fill"></i></a>
+                                    <form action="{{ route('clients.destroy', $client->id) }}" method="POST" style="display:inline-block;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')"><i class="bi bi-trash-fill"></i></button>
+                                    </form>
                                 </td>
                             </tr>
                             @endforeach

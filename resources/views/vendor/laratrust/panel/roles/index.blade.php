@@ -3,17 +3,16 @@
 @section('title', 'Roles')
 
 @section('content')
-<div class="flex flex-col p-2">
-  <a
-    href="{{route('laratrust.roles.create')}}"
-    class="self-end btn btn-sm btn-success py-2 px-2 mb-2 rounded">
-    + New Role
-  </a>
+<div class="card-body">
+  <a href="{{ route('laratrust.roles.create') }}" class="btn btn-primary mb-3">+ New Role</a>
+  @if(session('success'))
+  <div class="alert alert-success">{{ session('success') }}</div>
+  @endif
 
   <table class="table table-hover table-bordered">
-    <thead class="table-active">
+    <thead class="table-active table-dark">
       <tr>
-        <td align="center"><strong>Id</strong></td>
+        <td align="center"><strong>ID</strong></td>
         <th>Display Name</th>
         <th>Name</th>
         <td align="center"><strong># Permissions</strong></td>
@@ -27,12 +26,12 @@
         <td>{{$role->display_name}}</td>
         <td>{{$role->name}}</td>
         <td align="center">{{$role->permissions_count}}</td>
-        <td align="center" width="18%">
+        <td align="center" width="15%">
           <div class="row">
             @if (\Laratrust\Helper::roleIsEditable($role))
-            <div class="col-md-6"><a href="{{route('laratrust.roles.edit', $role->getKey())}}" class="btn btn-sm btn-primary">Edit</a></div>
+            <div class="col-md-6"><a href="{{route('laratrust.roles.edit', $role->getKey())}}" class="btn btn-sm btn-primary"><i class="bi bi-pencil-fill"></i></a></div>
             @else
-            <div class="col-md-6"><a href="{{route('laratrust.roles.show', $role->getKey())}}" class="btn btn-sm btn-secondary">Details</a></div>
+            <div class="col-md-6"><a href="{{route('laratrust.roles.show', $role->getKey())}}" class="btn btn-sm btn-secondary"><i class="bi bi-search"></i></a></div>
             @endif
             <div class="col-md-6">
               <form
@@ -51,6 +50,8 @@
       @endforeach
     </tbody>
   </table>
+
+  {{ $roles->links('laratrust::panel.pagination') }}
 </div>
-{{ $roles->links('laratrust::panel.pagination') }}
+
 @endsection

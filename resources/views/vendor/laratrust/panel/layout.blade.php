@@ -10,6 +10,7 @@
   <title>Laratrust - @yield('title')</title>
   @vite(['resources/sass/app.scss', 'resources/js/app.js', 'public/vendor/laratrust/laratrust.css'])
   <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <style>
         /* CSS for hiding elements on print */
         @media print {

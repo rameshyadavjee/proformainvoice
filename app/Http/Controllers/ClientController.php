@@ -101,6 +101,7 @@ class ClientController extends Controller
             'gst_number' => 'required|string|max:20',
             'payment_terms' => 'required|string|max:150',
             'client_type' => 'required|string|max:15',
+            'status' => 'required|string|max:15',
         ]);
     
         $client->update($request->all());
