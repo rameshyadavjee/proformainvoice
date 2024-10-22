@@ -36,6 +36,7 @@
                                 <td align="center"><strong>Dealer Price</strong></td>
                                 <td align="center"><strong>Trader Price</td>
                                 <td align="center"><strong>MSP Price</strong></td>
+                                <td align="center"><strong>GST</strong></td>
                                 <td width="18%" align="middle"><strong>Action</strong></td>
                             </tr>
                         </thead>
@@ -50,6 +51,7 @@
                                 <td align="center">{{ $item->dealer_rate }}</td>
                                 <td align="center">{{ $item->trader_rate }}</td>
                                 <td align="center">{{ $item->msp_rate }}</td>
+                                <td align="center">{{ $item->gst }}</td>
                                 <td align="center">
                                     <a href="{{ route('items.show', $item->id) }}" class="btn btn-sm btn-info"><i class="bi bi-search"></i></a>
                                     <a href="{{ route('items.edit', $item->id) }}" class="btn btn-sm btn-warning"><i class="bi bi-pencil-fill"></i></a>

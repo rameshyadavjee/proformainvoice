@@ -37,7 +37,7 @@
                             </div>
                             <div class="form-group col-md-2 mb-2">
                                 <label>Item Number</label>
-                                <input type="text" name="item_number" value="{{ old('item_number', $item->item_number ?? '') }}" class="form-control">
+                                <input type="text" name="item_number" value="{{ old('item_number', $item->item_number ?? '') }}" class="form-control text-center">
                                 @error('item_number')
                                 <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -79,8 +79,15 @@
                                 <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
+                            <div class="form-group col-md-1 mb-2">
+                                <label>GST</label>
+                                <input type="text" name="gst" value="{{ old('gst', $item->gst ?? '') }}" class="form-control text-center">
+                                @error('gst')
+                                <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
                             <div class="form-group col-md-2 mt-4">
-                                <button type="submit" class="btn btn-success">{{ 'Edit' }}</button>
+                                <button type="submit" class="btn btn-success btn-lg">{{ 'Edit' }}</button>
                             </div>
                         </div>
                     </form>

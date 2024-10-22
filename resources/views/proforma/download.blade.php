@@ -96,17 +96,16 @@
     <table width="100%" padding="0" >
         <tbody>
             <tr>
-                <td align="center" valign="middle" ><strong>Sr. No</strong></td>
+                <td align="center" valign="middle"><strong>Sr. No</strong></td>
                 <td align="center" valign="middle"><strong>FG Code</strong></td>
                 <td align="center" valign="middle"><strong>SKU</strong></td>
-
                 <td align="center" valign="middle"><strong>Item Name</strong></td>
                 <td align="center" valign="middle"><strong>Number</strong></td>
                 <td align="center" valign="middle"><strong>Dimension</strong></td>
-
                 <td align="center" valign="middle"><strong>Case <br> Pack</strong></td>
                 <td align="center" valign="middle"><strong>Order <br> (Case)</strong></td>
                 <td align="center" valign="middle"><strong>Total Qty <br> (In PCs)</strong></td>
+                <td align="center" valign="middle"><strong>Item<br> (GST)</strong></td>
                 <td align="center" valign="middle"><strong>Rate/PCs <br> In INR</strong></td>
                 <td align="center" valign="middle"><strong>Total Amount <br>In INR</strong></td>
             </tr>
@@ -122,53 +121,42 @@
                 <td align="center">{{ $item->case_pack }}</td>
                 <td align="center">{{ $item->case_order }}</td>
                 <td align="center">{{ $item->qty_pcs }}</td>
+                <td align="center">{{ $item->item_gst }}</td>
                 <td align="center">{{ number_format($item->rate_case, 2) }}</td> <!-- Format to 2 decimal places -->
                 <td align="center">{{ number_format($item->amount, 2) }}</td> <!-- Format to 2 decimal places -->
             </tr>
             @endforeach
 
             <tr>
-                <td colspan="9"></td>
+                <td colspan="10"></td>
                 <td align="center"><strong>Sub Total</strong></td>
                 <td align="center"><strong>{{ $proforma->sub_total}}</strong></td>
-            </tr>
-            @if($proforma->freight_charges!=0)
+            </tr>            
             <tr>
-                <td align="right" colspan="10"><strong>+ Freight Charges</strong></td>
-                <td align="center"><strong>{{$proforma->freight_charges}}</strong></td>
-            </tr>
-            @endif
-            @if($proforma->scheme!=0)
-            <tr>
-                <td align="right" colspan="10"><strong>Less {{ $proforma->scheme}}% Scheme</strong></td>
+                <td align="right"  colspan="11"><strong>Less {{ $proforma->scheme}}% Scheme</strong></td>
                 <td align="center"><strong>{{ $proforma->scheme_amount}}</strong></td>
-            </tr>
-            <tr>
-                <td align="right" colspan="10"><strong>Sub Amount - Scheme</strong></td>
-                <td align="center"><strong>{{ $proforma->subminusscheme}}</strong></td>
-            </tr>
-
-            <tr>
-                <td align="right" colspan="10"><strong>Total Amount</strong></td>
+            </tr>            
+            <tr>  
+                <td align="right"  colspan="11"><strong>Total Amount</strong></td>
                 <td align="center"><strong>{{ $proforma->amount}}</strong></td>
+            </tr>                
             </tr>
-            @endif
-            <tr>
                 <td align="right" colspan="7"><strong>Total Box/Qty</strong></td>
                 <td align="center"><strong>{{$proforma->total_box}}</strong></td>
                 <td align="center"><strong>{{$proforma->total_qty}}</strong></td>
-                <td align="center"><strong>+ GST {{ $proforma->gst}}%</strong></td>
-                <td align="center"><strong>{{ $proforma->gst_amount}}</strong></td>
-            </tr>
+                <td></td>
+                <td align="right"><strong>Freight/Courier</strong></td>
+                <td align="center"><strong>{{$proforma->freight_charges}}</strong></td>
+            </tr>           
             <tr>
-                <td align="left" colspan="7" style="padding: 1;"><strong>AMOUNT CHARGEABLE: (IN WORDS)</strong>
+                <td align="left" colspan="8" style="padding: 1;"><strong>AMOUNT CHARGEABLE: (IN WORDS)</strong>
                     <hr><strong>{{AmountInWords($proforma->total_amount)}}</strong>
                 </td>
                 <td align="center" colspan="3"><strong>TOTAL IN INR <br> (INCLUDING GST)</strong></td>
                 <td align="center" valign="middle"><strong>{{ $proforma->total_amount}}</strong> </td>
             </tr>
             <tr>
-                <td colspan="7" align="left" valign="middle" style="padding: 0px !important;">
+                <td colspan="8" align="left" valign="middle" style="padding: 0px !important;">
                     <table width="100%" style="padding: 0px !important; border:0px !important">
                         <tr>
                             <td><strong>TOTAL BOX</strong></td>
@@ -192,8 +180,6 @@
                         </tr>
                         
                     </table>
-
-
                 </td>
                 <td colspan="4" align="center" valign="middle">MODE OF SHIPMENT: PART LOAD BASIS.<br>ESTIMATED DELIVERY TIME: 5-7 DAYS<br>
                     (After realisation of the Advance Payment)
@@ -201,19 +187,19 @@
             </tr>
 
             <tr>
-                <td colspan="7"></td>
+                <td colspan="8"></td>
                 <td colspan="4" align="center"><strong>E&amp;OE.</strong></td>
             </tr>
             <tr>
-                <td colspan="7" align="center"><strong>For, {{$proforma->business_name }}</strong></td>
+                <td colspan="8" align="center"><strong>For, {{$proforma->business_name }}</strong></td>
                 <td colspan="4" align="center"><strong>For, SWEETDISP PRIVATE LIMITED</strong></td>
             </tr>
             <tr>
-                <td colspan="7" style="height:50px !important;" valign="bottom" align="center"><strong>AUTHORISED SIGNATORY</strong></td>
+                <td colspan="8" style="height:50px !important;" valign="bottom" align="center"><strong>AUTHORISED SIGNATORY</strong></td>
                 <td colspan="4" valign="bottom" align="center"><strong>AUTHORISED SIGNATORY</strong></td>
             </tr>
             <tr>
-                <td colspan="11">Order Acknowledgement with Signature &amp; Stamp of the Buyer</td>
+                <td colspan="12">Order Acknowledgement with Signature &amp; Stamp of the Buyer</td>
             </tr>
         </tbody>
     </table>

@@ -69,6 +69,7 @@ class ItemController extends Controller
             'dealer_rate' => 'required|numeric',
             'trader_rate' => 'required|numeric',
             'msp_rate' => 'required|numeric',
+            'gst' => 'nullable|numeric|max:2',
         ]);
 
         Item::create($request->all());
@@ -104,6 +105,7 @@ class ItemController extends Controller
             'dealer_rate' => 'required|numeric',
             'trader_rate' => 'required|numeric',
             'msp_rate' => 'required|numeric',
+            'gst' => 'nullable|numeric|max:2',
         ]);
 
         $item = Item::findOrFail($id);

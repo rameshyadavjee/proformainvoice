@@ -14,7 +14,7 @@ class Item extends Model
 	protected $primaryKey  = 'id';
 
     protected $fillable = [
-        'nav_id','sku','item_number','item_name','dimension','case_pack','dealer_rate','trader_rate','msp_rate'
+        'nav_id','sku','item_number','item_name','dimension','case_pack','dealer_rate','trader_rate','msp_rate','gst'
     ];
  
     public $timestamps = false;

@@ -82,6 +82,7 @@ class ProformaController extends Controller
                     'dimension_add' => $item->dimension,
                     'casepack_add' => $item->case_pack,
                     'price_add' => $item->msp_rate,
+                    'itemgst_add' => $item->item_gst,
                 ]);
             }
         } elseif ($clinetType->client_type == 'Dealer') {
@@ -93,7 +94,7 @@ class ProformaController extends Controller
                     'itemname_add' => $item->item_name,
                     'dimension_add' => $item->dimension,
                     'casepack_add' => $item->case_pack,
-                    'price_add' => $item->dealer_rate,
+                    'itemgst_add' => $item->item_gst,
                 ]);
             }
         } elseif ($clinetType->client_type == 'Trader') {
@@ -105,7 +106,7 @@ class ProformaController extends Controller
                     'itemname_add' => $item->item_name,
                     'dimension_add' => $item->dimension,
                     'casepack_add' => $item->case_pack,
-                    'price_add' => $item->trader_rate,
+                    'itemgst_add' => $item->item_gst,
                 ]);
             }
         }
@@ -156,16 +157,13 @@ class ProformaController extends Controller
             'contact_name' => 'required|string|max:25',
             'contact_number' => 'required|string|max:15',
             'gst_number' => 'required|string|max:20',
-            'payment_terms' => 'required|string|max:250',
-            'gst' => 'required|numeric',
-            'gst_amount' => 'required|numeric',
+            'payment_terms' => 'required|string|max:250',            
             'scheme' => 'required|numeric',
             'scheme_amount' => 'required|numeric',
             'total_case_order' => 'required|numeric',
             'total_qty_pcs' => 'required|numeric',
             'amount' => 'required|numeric',
-            'freight_charges' => 'nullable',
-            'subminusscheme' => 'required|numeric',
+            'freight_charges' => 'nullable',            
             'grand_amount' => 'required|numeric',
         ]);
 
@@ -188,12 +186,8 @@ class ProformaController extends Controller
         $proforma->amount = $request->input('amount');
         $proforma->freight_charges = $request->input('freight_charges');
         $proforma->scheme = $request->input('scheme');
-        $proforma->scheme_amount = $request->input('scheme_amount');
-        $proforma->subminusscheme = $request->input('subminusscheme');
-        $proforma->gst = $request->input('gst');
-        $proforma->gst_amount = $request->input('gst_amount');
+        $proforma->scheme_amount = $request->input('scheme_amount');               
         $proforma->total_amount = $request->input('grand_amount');
-
         $proforma->save();
         $proforma_id = $proforma->id;
 
