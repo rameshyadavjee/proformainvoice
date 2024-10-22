@@ -15,7 +15,7 @@ class Proforma extends Model
 
     protected $fillable = [
        'client_id','business_name','address','ship_to','other_references','contact_name','contact_phone',
-       'gst_number','payment_terms','total_box','total_qty','net_amount','freight_charges','scheme','basicamtminusscheme','gst','gst_amount','total_amount',
+       'gst_number','payment_terms','total_box','total_qty','net_amount','freight_charges','scheme','total_amount',
        'created_by','user_id','remarks','status'
     ];
  

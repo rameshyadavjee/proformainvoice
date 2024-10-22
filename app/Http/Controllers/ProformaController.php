@@ -162,7 +162,7 @@ class ProformaController extends Controller
             'scheme_amount' => 'required|numeric',
             'total_case_order' => 'required|numeric',
             'total_qty_pcs' => 'required|numeric',
-            'amount' => 'required|numeric',
+            'amount' => 'required|numeric',            
             'freight_charges' => 'nullable',            
             'grand_amount' => 'required|numeric',
         ]);
@@ -222,6 +222,7 @@ class ProformaController extends Controller
                 $invoiceItem->qty_pcs = $request->qty_pcs[$i];
                 $invoiceItem->rate_case = $request->rate_case[$i];
                 $invoiceItem->amount = $request->total_amount[$i];
+                $invoiceItem->item_gst = $request->item_gst[$i];
                 $invoiceItem->save();
             }
         }
