@@ -15,8 +15,7 @@ class InvoiceItemList  extends Model
 
     protected $fillable = [
        'prinv_id','nav_id','sku','item_name','item_number','dimension','case_pack',
-       'case_order','qty_pcs','rate_case','total_amount','item_gst',
-    ];
- 
+       'case_order','qty_pcs','rate_case','basic_price','item_gst','itemgstamount','total_amount',
+    ]; 
     public $timestamps = false;
 }

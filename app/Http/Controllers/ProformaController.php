@@ -181,12 +181,13 @@ class ProformaController extends Controller
         $proforma->gst_number = $request->input('gst_number');
         $proforma->payment_terms = $request->input('payment_terms');
         $proforma->total_box = $request->input('total_case_order');
-        $proforma->total_qty = $request->input('total_qty_pcs');
+        $proforma->total_qty = $request->input('total_qty_pcs');        
         $proforma->sub_total = $request->input('sub_total');
-        $proforma->amount = $request->input('amount');
-        $proforma->freight_charges = $request->input('freight_charges');
         $proforma->scheme = $request->input('scheme');
         $proforma->scheme_amount = $request->input('scheme_amount');               
+        $proforma->amount = $request->input('amount');
+        $proforma->freight_charges = $request->input('freight_charges');
+        $proforma->fdc_gstamount = $request->input('fdc_gstamount');                
         $proforma->total_amount = $request->input('grand_amount');
         $proforma->save();
         $proforma_id = $proforma->id;
@@ -221,8 +222,10 @@ class ProformaController extends Controller
                 $invoiceItem->case_order = $request->case_order[$i];
                 $invoiceItem->qty_pcs = $request->qty_pcs[$i];
                 $invoiceItem->rate_case = $request->rate_case[$i];
-                $invoiceItem->amount = $request->total_amount[$i];
+                $invoiceItem->basic_price = $request->basic_price[$i];
                 $invoiceItem->item_gst = $request->item_gst[$i];
+                $invoiceItem->itemgstamount = $request->itemgstamount[$i];
+                $invoiceItem->amount = $request->total_amount[$i];
                 $invoiceItem->save();
             }
         }

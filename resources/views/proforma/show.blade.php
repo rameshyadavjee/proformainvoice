@@ -69,10 +69,10 @@
                             <table width="100%" class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <td align="center" valign="middle" width="5%"><strong>Sr. No</strong></td>
-                                        <td align="center" valign="middle" width="7%"><strong>FG Code</strong></td>
-                                        <td align="center" valign="middle" width="7%"><strong>SKU</strong></td>
-                                        <td colspan="3" valign="bottom" width="15%">
+                                        <td align="center" valign="middle"><strong>Sr. No</strong></td>
+                                        <td align="center" valign="middle"><strong>FG Code</strong></td>
+                                        <td align="center" valign="middle"><strong>SKU</strong></td>
+                                        <td colspan="3" valign="bottom">
                                             <table style="padding:0; width:100%">
                                                 <tr>
                                                     <td align="center" colspan="3"><strong>DESCRIPTION OF GOODS</strong><br>
@@ -86,12 +86,14 @@
                                                 </tr>
                                             </table>
                                         </td>
-                                        <td align="center" valign="middle" width="6%"><strong>Case <br> Pack</strong></td>
-                                        <td align="center" valign="middle" width="8%"><strong>Order <br> (Case)</strong></td>
-                                        <td align="center" valign="middle" width="8%"><strong>Total Qty <br> (In PCs)</strong></td>
-                                        <td align="center" valign="middle" width="8%"><strong>Item<br> (GST)</strong></td>
-                                        <td align="center" valign="middle" width="8%"><strong>Rate/PCs <br> In INR</strong></td>
+                                        <td align="center" valign="middle"><strong>Case <br> Pack</strong></td>
+                                        <td align="center" valign="middle"><strong>Order <br> (Case)</strong></td>                                        
+                                        <td align="center" valign="middle"><strong>Total Qty <br> (In PCs)</strong></td>
+                                        <td align="center" valign="middle"><strong>Rate/PCs <br> In INR</strong></td>
                                         <td align="center" valign="middle"><strong>Basic Amount <br>In INR</strong></td>
+                                        <td align="center" valign="middle"><strong>Item<br> (GST)</strong></td>
+                                        <td align="center" valign="middle"><strong>Item<br> (GST Amount)</strong></td>
+                                        <td align="center" valign="middle"><strong>Amount <br>In INR</strong></td>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -100,49 +102,54 @@
                                         <td align="center">{{ $index + 1 }}</td> <!-- Display row number -->
                                         <td align="center">{{ $item->nav_id }}</td>
                                         <td align="center">{{ $item->sku }}</td>
-                                        <td align="left" width="20%">{{ $item->item_name }}</td>
+                                        <td align="left">{{ $item->item_name }}</td>
                                         <td align="center">{{ $item->item_number }}</td>
                                         <td align="center">{{ $item->dimension }}</td>
                                         <td align="center">{{ $item->case_pack }}</td>
                                         <td align="center">{{ $item->case_order }}</td>
                                         <td align="center">{{ $item->qty_pcs }}</td>
-                                        <td align="center">{{ $item->item_gst }}</td>
                                         <td align="center">{{ number_format($item->rate_case, 2) }}</td> <!-- Format to 2 decimal places -->
+                                        <td align="center">{{ $item->basic_price }}</td>
+                                        <td align="center">{{ $item->item_gst }}</td>
+                                        <td align="center">{{ $item->itemgstamount }}</td>
                                         <td align="center">{{ number_format($item->amount, 2) }}</td> <!-- Format to 2 decimal places -->
                                     </tr>
                                     @endforeach
 
                                     <tr>
-                                        <td colspan="10"></td>
+                                        <td colspan="12"></td>
                                         <td align="center"><strong>Sub Total</strong></td>
                                         <td align="center"><strong>{{ $proforma->sub_total}}</strong></td>
                                     </tr>   
                                     <tr>
-                                        <td align="right" colspan="11"><strong>Less {{ $proforma->scheme}}% Scheme</strong></td>
+                                        <td align="right" colspan="13"><strong>Less {{ $proforma->scheme}}% Scheme</strong></td>
                                         <td align="center"><strong>{{ $proforma->scheme_amount}}</strong></td>
                                     </tr>                                    
                                     <tr>
-                                        <td align="right" colspan="11"><strong>Total Amount</strong></td>
+                                        <td align="right" colspan="13"><strong>Total Amount</strong></td>
                                         <td align="center"><strong>{{ $proforma->amount}}</strong></td>
                                     </tr>
+
+                                    <tr>
+                                        <td align="right" colspan="13"><strong>Freight/Courier/Development Charges {{ $proforma->freight_charges }} Rs. + 18%</strong></td>
+                                        <td align="center"><strong>{{$proforma->fdc_gstamount}}</strong></td>
+                                    </tr>
+
                                     <tr>
                                         <td align="right" colspan="7"><strong>Total Box/Qty</strong></td>
                                         <td align="center"><strong>{{$proforma->total_box}}</strong></td>
-                                        <td align="center"><strong>{{$proforma->total_qty}}</strong></td>
-                                        <td></td>
-                                        <td align="right"><strong>Freight/Courier</strong></td>
-                                        <td align="center"><strong>{{$proforma->freight_charges}}</strong></td>
-                                    </tr>
+                                        <td align="center"><strong>{{$proforma->total_qty}}</strong></td>                                        
+                                        <td colspan="4"><strong>TOTAL IN INR (INCLUDING GST)</strong></td>
+                                        <td align="center"><strong>{{ $proforma->total_amount}}</strong></td>
+                                    </tr>   
+
                                     <tr>
-                                        <td align="left" colspan="7" style="padding: 1;"><strong>AMOUNT CHARGEABLE: (IN WORDS)</strong>
+                                        <td align="left" colspan="14" style="padding: 1;"><strong>AMOUNT CHARGEABLE: (IN WORDS)</strong>
                                             <hr><strong>{{AmountInWords($proforma->total_amount)}}</strong>
-                                        </td>
-                                        <td align="center" colspan="4"><strong>TOTAL IN INR <br> (INCLUDING GST)</strong></td>
-                                        <td align="center" valign="middle"><strong>{{ $proforma->total_amount}}</strong> </td>
-                                    </tr>
-                                    
+                                        </td>                                       
+                                    </tr>                                    
                                     <tr>
-                                        <td colspan="7" align="left" valign="middle" style="padding: 1;">
+                                        <td colspan="9" align="left" valign="middle" style="padding: 1;">
                                             <table class="table  table-bordered">
                                                 <tr>
                                                     <td><strong>TOTAL BOX</strong></td>
@@ -169,19 +176,19 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="7"></td>
+                                        <td colspan="9"></td>
                                         <td colspan="5" align="center"><strong>E&amp;OE.</strong></td>
                                     </tr>
                                     <tr>
-                                        <td colspan="7" align="center"><strong>For, {{$proforma->business_name }}</strong></td>
+                                        <td colspan="9" align="center"><strong>For, {{$proforma->business_name }}</strong></td>
                                         <td colspan="5" align="center"><strong>For, SWEETDISP PRIVATE LIMITED</strong></td>
                                     </tr>
                                     <tr>
-                                        <td colspan="7" style="height:50px !important;" valign="bottom" align="center"><strong>AUTHORISED SIGNATORY</strong></td>
+                                        <td colspan="9" style="height:50px !important;" valign="bottom" align="center"><strong>AUTHORISED SIGNATORY</strong></td>
                                         <td colspan="5" valign="bottom" align="center"><strong>AUTHORISED SIGNATORY</strong></td>
                                     </tr>
                                     <tr>
-                                        <td colspan="12">Order Acknowledgement with Signature &amp; Stamp of the Buyer</td>
+                                        <td colspan="14">Order Acknowledgement with Signature &amp; Stamp of the Buyer</td>
                                     </tr>
                                 </tbody>
                             </table>
